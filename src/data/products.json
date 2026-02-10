@@ -1,0 +1,110 @@
+[
+  {
+    "sku": "MS-LOGI-M185",
+    "name": "Logitech M185 Mouse",
+    "category": "Mouse",
+    "price": 349,
+    "stock": 25,
+    "warranty_months": 12,
+    "tags": ["mouse", "เมาส์", "เม้าส์", "ไร้สาย"]
+  },
+  {
+    "sku": "KB-LOGI-K120",
+    "name": "Logitech K120 Keyboard",
+    "category": "Keyboard",
+    "price": 399,
+    "stock": 18,
+    "warranty_months": 12,
+    "tags": ["keyboard", "คีย์บอร์ด", "usb", "ทำงาน"]
+  },
+  {
+    "sku": "HD-SSD-1TB",
+    "name": "SSD NVMe 1TB Gen3",
+    "category": "Storage",
+    "price": 1890,
+    "stock": 7,
+    "warranty_months": 36,
+    "tags": ["ssd", "เอสเอสดี", "nvme", "1tb", "ความจุ"]
+  },
+  {
+    "sku": "HD-HDD-2TB",
+    "name": "HDD 2TB 3.5\"",
+    "category": "Storage",
+    "price": 1650,
+    "stock": 5,
+    "warranty_months": 24,
+    "tags": ["hdd", "ฮาร์ดดิส", "2tb", "จานหมุน"]
+  },
+  {
+    "sku": "RAM-DDR4-16",
+    "name": "RAM DDR4 16GB 3200",
+    "category": "RAM",
+    "price": 1290,
+    "stock": 10,
+    "warranty_months": 36,
+    "tags": ["ram", "แรม", "เมม", "ddr4", "16gb"]
+  },
+  {
+    "sku": "RTR-AX1800",
+    "name": "Wi-Fi Router AX1800",
+    "category": "Network",
+    "price": 1490,
+    "stock": 6,
+    "warranty_months": 24,
+    "tags": ["router", "เราเตอร์", "wifi", "wifi6", "เน็ต"]
+  },
+  {
+    "sku": "MON-24FHD",
+    "name": "Monitor 24\" FHD 75Hz",
+    "category": "Monitor",
+    "price": 3290,
+    "stock": 4,
+    "warranty_months": 36,
+    "tags": ["monitor", "จอ", "จอภาพ", "24นิ้ว", "fhd"]
+  },
+  {
+    "sku": "MS-LOGI-G102",
+    "name": "Logitech G102 Gaming Mouse",
+    "category": "Mouse",
+    "price": 690,
+    "stock": 12,
+    "warranty_months": 24,
+    "tags": ["mouse", "เมาส์", "เกมมิ่ง", "dpi"]
+  },
+  {
+    "sku": "KB-RED-SWITCH",
+    "name": "Mechanical Keyboard Red Switch",
+    "category": "Keyboard",
+    "price": 1590,
+    "stock": 8,
+    "warranty_months": 12,
+    "tags": ["keyboard", "คีย์บอร์ด", "mechanical", "เกม"]
+  },
+  {
+    "sku": "RAM-DDR4-32",
+    "name": "RAM DDR4 32GB 3200",
+    "category": "RAM",
+    "price": 2590,
+    "stock": 5,
+    "warranty_months": 36,
+    "tags": ["ram", "แรม", "32gb", "ddr4"]
+  },
+  {
+    "sku": "SSD-SATA-512",
+    "name": "SSD SATA 512GB",
+    "category": "Storage",
+    "price": 1290,
+    "stock": 9,
+    "warranty_months": 36,
+    "tags": ["ssd", "sata", "512gb"]
+  },
+  {
+    "sku": "UPS-1000VA",
+    "name": "UPS 1000VA",
+    "category": "Power",
+    "price": 2990,
+    "stock": 4,
+    "warranty_months": 24,
+    "tags": ["ups", "สำรองไฟ", "ไฟดับ"]
+  }
+]
