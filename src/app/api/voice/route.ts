@@ -12,7 +12,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "ไม่มีข้อความจากการพูด" }, { status: 400 });
     }
 
-    const n8nUrl = process.env.NEXT_PUBLIC_N8N_WEBHOOK_URL;
+    const n8nUrl = process.env.N8N_WEBHOOK_URL;
     if (!n8nUrl) {
       return NextResponse.json({ error: "ยังไม่ได้ตั้งค่า N8N_WEBHOOK_URL" }, { status: 500 });
     }

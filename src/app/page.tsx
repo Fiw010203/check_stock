@@ -13,16 +13,18 @@ export default function Home() {
   const [isListening, setIsListening] = useState(false);
   const [status, setStatus] = useState("พร้อมพูด");
   const [result, setResult] = useState<ApiResult>({});
+  const [typedAnswer, setTypedAnswer] = useState("");
 
   const recognitionRef = useRef<any>(null);
 
+  // 🎧 Speech Setup
   useEffect(() => {
     const SpeechRecognition =
       (window as any).SpeechRecognition ||
       (window as any).webkitSpeechRecognition;
 
     if (!SpeechRecognition) {
-      setStatus("เบราว์เซอร์นี้ไม่รองรับ Web Speech API (แนะนำ Chrome)");
+      setStatus("เบราว์เซอร์ไม่รองรับ (ใช้ Chrome)");
       return;
     }
 
@@ -33,23 +35,23 @@ export default function Home() {
 
     rec.onstart = () => {
       setIsListening(true);
-      setStatus("🎧 กำลังฟัง... พูดคำถามได้เลย");
+      setStatus("🎧 กำลังฟัง...");
     };
 
     rec.onend = () => {
       setIsListening(false);
-      setStatus("⏹️ หยุดฟังแล้ว");
+      setStatus("⏹️ หยุดฟัง");
     };
 
     rec.onerror = (e: any) => {
       setIsListening(false);
-      setStatus("❌ เกิดข้อผิดพลาด");
+      setStatus("❌ Error");
       setResult({ error: e?.error || "speech error" });
     };
 
     rec.onresult = async (event: any) => {
       const transcript = event.results?.[0]?.[0]?.transcript || "";
-      setStatus("🤖 กำลังประมวลผล...");
+      setStatus("🤖 AI กำลังคิด...");
       setResult({ transcript });
 
       const resp = await fetch("/api/voice", {
@@ -60,14 +62,30 @@ export default function Home() {
 
       const data: ApiResult = await resp.json();
       setResult(data);
-      setStatus(data.error ? "❌ มีปัญหา" : "✅ เสร็จสิ้น");
+      setStatus("✅ เสร็จสิ้น");
+
+      if (data.answer) {
+        typeEffect(data.answer);
+      }
     };
 
     recognitionRef.current = rec;
   }, []);
 
+  // ✨ Typing Effect
+  function typeEffect(text: string) {
+    setTypedAnswer("");
+    let i = 0;
+    const interval = setInterval(() => {
+      setTypedAnswer((prev) => prev + text[i]);
+      i++;
+      if (i >= text.length) clearInterval(interval);
+    }, 25);
+  }
+
   function start() {
     setResult({});
+    setTypedAnswer("");
     recognitionRef.current?.start();
   }
 
@@ -76,80 +94,109 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-200 p-6">
-      <div className="max-w-3xl mx-auto">
+    <main className="min-h-screen bg-black text-white overflow-hidden relative">
+
+      {/* Animated Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-purple-900 via-black to-blue-900 animate-pulse opacity-40"></div>
+
+      <div className="relative z-10 p-6 max-w-4xl mx-auto">
+
         {/* Header */}
         <header className="text-center mb-10">
-          <h1 className="text-3xl font-bold tracking-tight">
-            🖥️ IT Shop Voice Assistant
+          <h1 className="text-4xl font-extrabold bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent animate-pulse">
+            🚀 IT Shop AI Voice
           </h1>
-          <p className="text-sm text-slate-600 mt-2">
-            พูดถามสินค้าที่ต้องการ เช่น “เมาส์ แรม จอ”
+          <p className="text-gray-400 mt-3">
+            พูดว่า “สินค้าใกล้หมด” หรือ “เมาส์ Logitech”
           </p>
         </header>
 
-        {/* Controls */}
-        <div className="flex items-center justify-center gap-4 mb-8">
+        {/* Voice Button */}
+        <div className="flex justify-center mb-10">
           {!isListening ? (
             <button
               onClick={start}
-              className="px-6 py-3 rounded-full bg-blue-600 text-white font-medium shadow hover:bg-blue-700 transition"
+              className="relative px-10 py-4 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 font-bold text-lg shadow-2xl hover:scale-110 transition transform"
             >
-              🎙️ เริ่มพูด
+              🎤 เริ่มพูด
+              <span className="absolute inset-0 rounded-full bg-white opacity-20 blur-xl animate-ping"></span>
             </button>
           ) : (
             <button
               onClick={stop}
-              className="px-6 py-3 rounded-full bg-red-600 text-white font-medium shadow hover:bg-red-700 transition animate-pulse"
+              className="px-10 py-4 rounded-full bg-red-600 font-bold text-lg shadow-2xl animate-pulse hover:scale-110 transition"
             >
-              ⏹️ หยุดฟัง
+              🔴 กำลังฟัง...
             </button>
           )}
+        </div>
 
-          <span className="px-4 py-2 rounded-full bg-white shadow text-sm">
-            {status}
-          </span>
+        {/* Status */}
+        <div className="text-center mb-6 text-sm text-cyan-300 animate-bounce">
+          {status}
         </div>
 
         {/* Transcript */}
-        <section className="mb-4 bg-white rounded-xl shadow p-4">
-          <h2 className="font-semibold mb-2">🗣️ ข้อความที่พูด</h2>
-          <p className="text-sm text-slate-700">
+        <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-5 shadow-lg mb-6 border border-white/20">
+          <h2 className="font-semibold mb-2 text-cyan-400">
+            🗣️ คุณพูดว่า
+          </h2>
+          <p className="text-gray-200">
             {result.transcript || "—"}
           </p>
-        </section>
+        </div>
 
         {/* Answer */}
-        <section className="bg-white rounded-xl shadow p-4">
-          <h2 className="font-semibold mb-2">🤖 คำตอบจากระบบ</h2>
-          <p className="text-sm whitespace-pre-line text-slate-800">
-            {result.answer || "—"}
+        <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-5 shadow-lg border border-white/20">
+          <h2 className="font-semibold mb-2 text-purple-400">
+            🤖 คำตอบจาก AI
+          </h2>
+
+          <p className="whitespace-pre-line text-gray-100 min-h-[50px]">
+            {typedAnswer || "—"}
           </p>
 
           {result.error && (
-            <p className="text-sm text-red-600 mt-2">{result.error}</p>
+            <p className="text-red-400 mt-3">{result.error}</p>
           )}
 
           {/* Product Cards */}
           {result.matches && result.matches.length > 0 && (
-            <div className="mt-4 grid gap-3 sm:grid-cols-2">
+            <div className="mt-6 grid sm:grid-cols-2 gap-4">
               {result.matches.map((p, i) => (
                 <div
                   key={i}
-                  className="border rounded-lg p-3 hover:shadow transition"
+                  className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-xl p-4 border border-purple-500/30 hover:scale-105 hover:shadow-purple-500/40 hover:shadow-lg transition transform"
                 >
-                  <div className="font-medium">{p.name}</div>
-                  <div className="text-sm text-slate-600">
-                    ราคา {p.price} บาท
+                  <div className="font-bold text-lg text-cyan-300">
+                    {p.name}
                   </div>
-                  <div className="text-xs text-slate-500">
-                    คงเหลือ {p.stock}
+
+                  <div className="text-sm mt-1">
+                    💰 {p.price} บาท
                   </div>
+
+                  <div
+                    className={`text-xs mt-1 ${
+                      p.stock <= 5
+                        ? "text-red-400 animate-pulse"
+                        : "text-green-400"
+                    }`}
+                  >
+                    📦 คงเหลือ {p.stock}
+                  </div>
+
+                  {p.stock <= 5 && (
+                    <div className="mt-2 text-xs bg-red-600 px-2 py-1 rounded-full inline-block animate-bounce">
+                      ⚠ ใกล้หมด
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
           )}
-        </section>
+        </div>
+
       </div>
     </main>
   );

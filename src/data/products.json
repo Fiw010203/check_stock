@@ -40,7 +40,7 @@
     "name": "RAM DDR4 16GB 3200",
     "category": "RAM",
     "price": 1290,
-    "stock": 10,
+    "stock": 2,
     "warranty_months": 36,
     "tags": ["ram", "แรม", "เมม", "ddr4", "16gb"]
   },
@@ -76,7 +76,7 @@
     "name": "Mechanical Keyboard Red Switch",
     "category": "Keyboard",
     "price": 1590,
-    "stock": 8,
+    "stock": 2,
     "warranty_months": 12,
     "tags": ["keyboard", "คีย์บอร์ด", "mechanical", "เกม"]
   },
