@@ -104,10 +104,10 @@ export default function Home() {
         {/* Header */}
         <header className="text-center mb-10">
           <h1 className="text-4xl font-extrabold bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent animate-pulse">
-            🚀 IT Shop AI Voice
+            🚀 Check stock AI Voice
           </h1>
           <p className="text-gray-400 mt-3">
-            พูดว่า “สินค้าใกล้หมด” หรือ “เมาส์ Logitech”
+            พูดว่า “สินค้าใกล้หมด” หรือ "สต็อกสินค้า" เพื่อเช็คสต็อกและรับคำแนะนำจาก AI
           </p>
         </header>
 
