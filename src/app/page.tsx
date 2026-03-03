@@ -17,7 +17,6 @@ export default function Home() {
 
   const recognitionRef = useRef<any>(null);
 
-  // 🎧 Speech Setup
   useEffect(() => {
     const SpeechRecognition =
       (window as any).SpeechRecognition ||
@@ -64,15 +63,12 @@ export default function Home() {
       setResult(data);
       setStatus("✅ เสร็จสิ้น");
 
-      if (data.answer) {
-        typeEffect(data.answer);
-      }
+      if (data.answer) typeEffect(data.answer);
     };
 
     recognitionRef.current = rec;
   }, []);
 
-  // ✨ Typing Effect
   function typeEffect(text: string) {
     setTypedAnswer("");
     let i = 0;
@@ -80,7 +76,7 @@ export default function Home() {
       setTypedAnswer((prev) => prev + text[i]);
       i++;
       if (i >= text.length) clearInterval(interval);
-    }, 25);
+    }, 20);
   }
 
   function start() {
@@ -94,20 +90,16 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen bg-black text-white overflow-hidden relative">
-
-      {/* Animated Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-purple-900 via-black to-blue-900 animate-pulse opacity-40"></div>
-
-      <div className="relative z-10 p-6 max-w-4xl mx-auto">
+    <main className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 text-white">
+      <div className="p-6 max-w-6xl mx-auto">
 
         {/* Header */}
-        <header className="text-center mb-10">
-          <h1 className="text-4xl font-extrabold bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent animate-pulse">
-            🚀 Check stock AI Voice
+        <header className="text-center mb-12">
+          <h1 className="text-4xl font-extrabold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+            Check Stock AI Voice
           </h1>
-          <p className="text-gray-400 mt-3">
-            พูดว่า “สินค้าใกล้หมด” หรือ "สต็อกสินค้า" เพื่อเช็คสต็อกและรับคำแนะนำจาก AI
+          <p className="text-slate-400 mt-3">
+            ระบบเช็คสต็อกด้วยเสียง พร้อมคำแนะนำอัจฉริยะ
           </p>
         </header>
 
@@ -116,87 +108,89 @@ export default function Home() {
           {!isListening ? (
             <button
               onClick={start}
-              className="relative px-10 py-4 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 font-bold text-lg shadow-2xl hover:scale-110 transition transform"
+              className="px-10 py-4 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 font-semibold text-lg shadow-lg hover:scale-105 transition"
             >
               🎤 เริ่มพูด
-              <span className="absolute inset-0 rounded-full bg-white opacity-20 blur-xl animate-ping"></span>
             </button>
           ) : (
             <button
               onClick={stop}
-              className="px-10 py-4 rounded-full bg-red-600 font-bold text-lg shadow-2xl animate-pulse hover:scale-110 transition"
+              className="px-10 py-4 rounded-full bg-red-600 font-semibold text-lg shadow-lg hover:scale-105 transition"
             >
               🔴 กำลังฟัง...
             </button>
           )}
         </div>
 
-        {/* Status */}
-        <div className="text-center mb-6 text-sm text-cyan-300 animate-bounce">
+        <div className="text-center mb-8 text-sm text-slate-400">
           {status}
         </div>
 
-        {/* Transcript */}
-        <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-5 shadow-lg mb-6 border border-white/20">
-          <h2 className="font-semibold mb-2 text-cyan-400">
-            🗣️ คุณพูดว่า
-          </h2>
-          <p className="text-gray-200">
-            {result.transcript || "—"}
-          </p>
-        </div>
+        {/* Layout */}
+        <div className="grid md:grid-cols-2 gap-8">
 
-        {/* Answer */}
-        <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-5 shadow-lg border border-white/20">
-          <h2 className="font-semibold mb-2 text-purple-400">
-            🤖 คำตอบจาก AI
-          </h2>
+          {/* LEFT - User */}
+          <div className="bg-blue-500/10 border border-blue-400/30 rounded-2xl p-6 backdrop-blur-md shadow-xl">
+            <h2 className="font-semibold mb-4 text-blue-400 text-lg">
+              🗣️ คุณพูดว่า
+            </h2>
+            <p className="text-slate-200 min-h-[80px]">
+              {result.transcript || "—"}
+            </p>
+          </div>
 
-          <p className="whitespace-pre-line text-gray-100 min-h-[50px]">
-            {typedAnswer || "—"}
-          </p>
+          {/* RIGHT - AI */}
+          <div className="bg-purple-500/10 border border-purple-400/30 rounded-2xl p-6 backdrop-blur-md shadow-xl">
+            <h2 className="font-semibold mb-4 text-purple-400 text-lg">
+              🤖 คำตอบจาก AI
+            </h2>
 
-          {result.error && (
-            <p className="text-red-400 mt-3">{result.error}</p>
-          )}
+            <p className="whitespace-pre-line text-slate-100 min-h-[80px]">
+              {typedAnswer || "—"}
+            </p>
 
-          {/* Product Cards */}
-          {result.matches && result.matches.length > 0 && (
-            <div className="mt-6 grid sm:grid-cols-2 gap-4">
-              {result.matches.map((p, i) => (
-                <div
-                  key={i}
-                  className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-xl p-4 border border-purple-500/30 hover:scale-105 hover:shadow-purple-500/40 hover:shadow-lg transition transform"
-                >
-                  <div className="font-bold text-lg text-cyan-300">
-                    {p.name}
-                  </div>
+            {result.error && (
+              <p className="text-red-400 mt-3">{result.error}</p>
+            )}
 
-                  <div className="text-sm mt-1">
-                    💰 {p.price} บาท
-                  </div>
-
+            {/* Products */}
+            {result.matches && result.matches.length > 0 && (
+              <div className="mt-6 grid gap-4">
+                {result.matches.map((p, i) => (
                   <div
-                    className={`text-xs mt-1 ${
-                      p.stock <= 5
-                        ? "text-red-400 animate-pulse"
-                        : "text-green-400"
-                    }`}
+                    key={i}
+                    className="bg-slate-900 border border-slate-700 rounded-xl p-4 hover:border-purple-500 transition"
                   >
-                    📦 คงเหลือ {p.stock}
-                  </div>
-
-                  {p.stock <= 5 && (
-                    <div className="mt-2 text-xs bg-red-600 px-2 py-1 rounded-full inline-block animate-bounce">
-                      ⚠ ใกล้หมด
+                    <div className="font-bold text-lg text-white">
+                      {p.name}
                     </div>
-                  )}
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
 
+                    <div className="text-sm mt-1 text-slate-400">
+                      💰 {p.price} บาท
+                    </div>
+
+                    <div
+                      className={`text-sm mt-1 font-medium ${
+                        p.stock <= 5
+                          ? "text-red-400"
+                          : "text-green-400"
+                      }`}
+                    >
+                      📦 คงเหลือ {p.stock}
+                    </div>
+
+                    {p.stock <= 5 && (
+                      <div className="mt-2 text-xs bg-red-600/20 text-red-400 px-2 py-1 rounded-md inline-block">
+                        ⚠ ใกล้หมด
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+
+        </div>
       </div>
     </main>
   );
