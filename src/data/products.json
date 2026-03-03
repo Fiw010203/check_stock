@@ -106,5 +106,185 @@
     "stock": 4,
     "warranty_months": 24,
     "tags": ["ups", "สำรองไฟ", "ไฟดับ"]
+  },
+  {
+    "sku": "CPU-I5-12400F",
+    "name": "Intel Core i5-12400F",
+    "category": "CPU",
+    "price": 5890,
+    "stock": 6,
+    "warranty_months": 36,
+    "tags": ["cpu", "intel", "i5", "12400f", "processor"]
+  },
+  {
+    "sku": "CPU-R5-5600",
+    "name": "AMD Ryzen 5 5600",
+    "category": "CPU",
+    "price": 5290,
+    "stock": 5,
+    "warranty_months": 36,
+    "tags": ["cpu", "amd", "ryzen5", "5600"]
+  },
+  {
+    "sku": "MB-B660M",
+    "name": "Mainboard B660M",
+    "category": "Mainboard",
+    "price": 3490,
+    "stock": 4,
+    "warranty_months": 36,
+    "tags": ["mainboard", "b660", "intel", "m-atx"]
+  },
+  {
+    "sku": "MB-B550",
+    "name": "Mainboard B550",
+    "category": "Mainboard",
+    "price": 3290,
+    "stock": 3,
+    "warranty_months": 36,
+    "tags": ["mainboard", "b550", "amd", "atx"]
+  },
+  {
+    "sku": "GPU-RTX3060",
+    "name": "NVIDIA RTX 3060 12GB",
+    "category": "GPU",
+    "price": 11900,
+    "stock": 2,
+    "warranty_months": 36,
+    "tags": ["gpu", "rtx3060", "การ์ดจอ", "12gb"]
+  },
+  {
+    "sku": "GPU-RX6600",
+    "name": "AMD Radeon RX 6600",
+    "category": "GPU",
+    "price": 8900,
+    "stock": 3,
+    "warranty_months": 36,
+    "tags": ["gpu", "rx6600", "amd", "การ์ดจอ"]
+  },
+  {
+    "sku": "PSU-650W",
+    "name": "Power Supply 650W 80+ Bronze",
+    "category": "Power",
+    "price": 2190,
+    "stock": 7,
+    "warranty_months": 36,
+    "tags": ["psu", "650w", "80plus", "bronze"]
+  },
+  {
+    "sku": "CASE-MATX-01",
+    "name": "Case mATX Tempered Glass",
+    "category": "Case",
+    "price": 1490,
+    "stock": 6,
+    "warranty_months": 12,
+    "tags": ["case", "matx", "กระจก", "เคส"]
+  },
+  {
+    "sku": "COOL-AIR-120",
+    "name": "Air Cooler 120mm",
+    "category": "Cooling",
+    "price": 790,
+    "stock": 10,
+    "warranty_months": 12,
+    "tags": ["cooler", "พัดลม", "cpu", "120mm"]
+  },
+  {
+    "sku": "COOL-LIQ-240",
+    "name": "Liquid Cooling 240mm",
+    "category": "Cooling",
+    "price": 2890,
+    "stock": 3,
+    "warranty_months": 24,
+    "tags": ["liquid", "watercooling", "240mm"]
+  },
+  {
+    "sku": "MON-27QHD",
+    "name": "Monitor 27\" QHD 144Hz",
+    "category": "Monitor",
+    "price": 6990,
+    "stock": 3,
+    "warranty_months": 36,
+    "tags": ["monitor", "27นิ้ว", "qhd", "144hz"]
+  },
+  {
+    "sku": "MS-RAZER-VIPER",
+    "name": "Razer Viper Gaming Mouse",
+    "category": "Mouse",
+    "price": 1290,
+    "stock": 8,
+    "warranty_months": 24,
+    "tags": ["mouse", "razer", "เกมมิ่ง", "dpi"]
+  },
+  {
+    "sku": "KB-LOGI-MK270",
+    "name": "Logitech MK270 Wireless Combo",
+    "category": "Keyboard",
+    "price": 799,
+    "stock": 9,
+    "warranty_months": 12,
+    "tags": ["keyboard", "mouse", "ไร้สาย", "combo"]
+  },
+  {
+    "sku": "HDP-1TB-EXT",
+    "name": "External HDD 1TB USB 3.0",
+    "category": "Storage",
+    "price": 1590,
+    "stock": 6,
+    "warranty_months": 24,
+    "tags": ["external", "hdd", "1tb", "usb3"]
+  },
+  {
+    "sku": "SSD-NVME-2TB",
+    "name": "SSD NVMe 2TB Gen4",
+    "category": "Storage",
+    "price": 4590,
+    "stock": 2,
+    "warranty_months": 60,
+    "tags": ["ssd", "nvme", "2tb", "gen4"]
+  },
+  {
+    "sku": "RAM-DDR5-16",
+    "name": "RAM DDR5 16GB 5200",
+    "category": "RAM",
+    "price": 2490,
+    "stock": 4,
+    "warranty_months": 36,
+    "tags": ["ram", "ddr5", "16gb"]
+  },
+  {
+    "sku": "RTR-AX3000",
+    "name": "Wi-Fi Router AX3000",
+    "category": "Network",
+    "price": 2490,
+    "stock": 5,
+    "warranty_months": 24,
+    "tags": ["router", "wifi6", "ax3000"]
+  },
+  {
+    "sku": "WEBCAM-FHD",
+    "name": "Webcam Full HD 1080p",
+    "category": "Accessory",
+    "price": 990,
+    "stock": 11,
+    "warranty_months": 12,
+    "tags": ["webcam", "1080p", "กล้อง"]
+  },
+  {
+    "sku": "HEADSET-GAME",
+    "name": "Gaming Headset 7.1",
+    "category": "Accessory",
+    "price": 1290,
+    "stock": 7,
+    "warranty_months": 12,
+    "tags": ["headset", "หูฟัง", "เกม"]
+  },
+  {
+    "sku": "MIC-USB-01",
+    "name": "USB Condenser Microphone",
+    "category": "Accessory",
+    "price": 1790,
+    "stock": 5,
+    "warranty_months": 12,
+    "tags": ["microphone", "usb", "ไมค์"]
   }
 ]
